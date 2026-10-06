@@ -17,8 +17,9 @@
 
 # Load the readr package
 
-# ANSWER
 
+# ANSWER
+library(readr)
 
 ### QUESTION 2 ----- 
 
@@ -36,7 +37,13 @@
 col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 
 # ANSWER
+library(here)
+here()
+here("259-langbasics-importing-hw.Rproj")
+ds1 <- read_table('data_A/6191_1.txt', col_names = col_names, skip = 6)
+print(ds1)
 
+#col_names = FALSE
 ### QUESTION 3a. ----- 
 
 # For some reason, the trial numbers for this experiment should start at 100
