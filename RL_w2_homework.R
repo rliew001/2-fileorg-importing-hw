@@ -71,7 +71,7 @@ write_csv(ds1, file = "data_A_cleaned/v2trialnum_speed_time.csv")
 # Store it to a variable
 
 # ANSWER
-all_files <- list.files("data_A")
+all_files <- list.files(here("data_A"), full.names = TRUE)
 print(all_files)
 
 ### QUESTION 5 ----- 
@@ -79,14 +79,8 @@ print(all_files)
 # Read all of the files in data_A into a single tibble called ds
 
 # ANSWER
-#install.packages("fs")
-#library(fs)
-#ds <- list.files('all_files', full.names = TRUE)
-ds_all <- read_csv(all_files)
-#tibble(ds_all)
+ds_all <- read_tsv(all_files, skip = 7, col_names = col_names)
 print(ds_all)
-#print(ds)
-
 
 ### QUESTION 6 -----
 
@@ -99,8 +93,8 @@ print(ds_all)
 # (It should work now, but you'll see a warning because of the erroneous data point)
 
 # ANSWER
-print(ds1)
-ds1$trial_num <- round(ds1$trial_num + 100)
+ds_all <- read_tsv(all_files, skip = 7, col_names = col_names, col_types = "iccl")
+ds_all$trial_num <- round(ds_all$trial_num + 100)
 # error is not appearing? revisit after the fact.
 
 
@@ -112,7 +106,8 @@ ds1$trial_num <- round(ds1$trial_num + 100)
 # Re-import the data so that filename becomes a column
 
 # ANSWER
-
+ds_all <- read_tsv(all_files, skip = 7, col_names = col_names, col_types = "iccl", id = 'filename')
+print(ds_all)
 
 ### QUESTION 8 -----
 
@@ -121,4 +116,9 @@ ds1$trial_num <- round(ds1$trial_num + 100)
 # There are two sheets of data -- import each one into a new tibble
 
 # ANSWER
+library (readxl)
+excel_files_data_all <- list.files(here("data_B"), pattern = "\\.xlsx", full.names = TRUE)
+excel_sheets(excel_files_data_all)
+ds_sheet1 <- read_xlsx(excel_files_data_all, sheet = 1)
+ds_sheet2 <- read_xlsx(excel_files_data_all, sheet = 2)
 
