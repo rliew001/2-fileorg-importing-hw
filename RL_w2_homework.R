@@ -79,8 +79,13 @@ print(all_files)
 # Read all of the files in data_A into a single tibble called ds
 
 # ANSWER
-ds <- read.table('data_A')
-tibble(ds)
+#install.packages("fs")
+#library(fs)
+#ds <- list.files('all_files', full.names = TRUE)
+ds_all <- read_csv(all_files)
+#tibble(ds_all)
+print(ds_all)
+#print(ds)
 
 
 ### QUESTION 6 -----
@@ -94,6 +99,9 @@ tibble(ds)
 # (It should work now, but you'll see a warning because of the erroneous data point)
 
 # ANSWER
+print(ds1)
+ds1$trial_num <- round(ds1$trial_num + 100)
+# error is not appearing? revisit after the fact.
 
 
 ### QUESTION 7 -----
