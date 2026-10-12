@@ -50,6 +50,7 @@ print(ds1)
 # Create a new column in ds1 that takes trial_num and adds 100
 
 # ANSWER
+ds1$trial_num <- round(ds1$trial_num + 100)
 
 
 ### QUESTION 3b. ----- 
@@ -59,6 +60,9 @@ print(ds1)
 # Add one commend explaining your naming choice
 
 # ANSWER
+write_csv(ds1, file = "data_A_cleaned/v2trialnum_speed_time.csv")
+
+#my naming convention is to show that this is version 2 of the data that specifically made changes to trialnum.
 
 
 ### QUESTION 4 ----- 
@@ -67,13 +71,16 @@ print(ds1)
 # Store it to a variable
 
 # ANSWER
-
+all_files <- list.files("data_A")
+print(all_files)
 
 ### QUESTION 5 ----- 
 
 # Read all of the files in data_A into a single tibble called ds
 
 # ANSWER
+ds <- read.table('data_A')
+tibble(ds)
 
 
 ### QUESTION 6 -----
